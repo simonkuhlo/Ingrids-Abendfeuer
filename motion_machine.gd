@@ -106,6 +106,7 @@ func _prepare_movement(delta) -> Vector3:
 	var input_vector:Vector2 = Input.get_vector("move_right", "move_left", "move_backwards",  "move_forwards") 
 	var direction:Vector3
 	if _aiming:
+		body.rotation.y = 0
 		controlled_entity.global_rotation.y = lerp_angle(controlled_entity.global_rotation.y, camera_pivot.global_rotation.y, turning_rate * delta)
 		direction = (controlled_entity.transform.basis * Vector3(input_vector.x, 0, input_vector.y)).normalized()
 	else:
