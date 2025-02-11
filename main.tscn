@@ -328,9 +328,6 @@ shape = SubResource("WorldBoundaryShape3D_fpdde")
 [node name="IngoNew" parent="." instance=ExtResource("13_i3750")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.72752, 0)
 
-[node name="ExpressionManager" parent="IngoNew" index="3"]
-_Grounded = false
-
 [node name="Skeleton3D" parent="IngoNew/Skin/Ingo_Walking/Armature" index="0"]
 bones/5/rotation = Quaternion(-0.0540562, -4.67751e-06, -1.4824e-07, 0.998538)
 bones/14/rotation = Quaternion(0.215209, -0.0206358, 0.00937257, 0.976305)
