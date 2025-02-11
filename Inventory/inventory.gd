@@ -10,7 +10,7 @@ func add_coins(amount:int):
 	coins += amount
 
 func add_item(item:GameItem, amount:int):
-	var existing_container = get_item_container(item)
+	var existing_container = _get_item_container(item)
 	if existing_container:
 		existing_container.amount += amount
 	else:
