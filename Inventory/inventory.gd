@@ -18,7 +18,7 @@ func add_item(item:GameItem, amount:int):
 		inventory.append(container)
 
 func take_item(item:GameItem, amount:int) -> GameItemContainer:
-	var existing_container = get_item_container(item)
+	var existing_container = _get_item_container(item)
 	if existing_container:
 		var returned_container:GameItemContainer
 		if amount < existing_container.amount:
@@ -31,7 +31,7 @@ func take_item(item:GameItem, amount:int) -> GameItemContainer:
 			return returned_container
 	return null
 
-func get_item_container(item:GameItem) -> GameItemContainer:
+func _get_item_container(item:GameItem) -> GameItemContainer:
 	for container in inventory:
 		if container.item == item:
 			return container
