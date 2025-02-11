@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://_Lib/StateChartLib/state_chart.gd" id="1_1alts"]
 [ext_resource type="Script" path="res://Entities/player_controlled_entity.gd" id="1_2xmhn"]
-[ext_resource type="Script" path="res://motion_machine.gd" id="1_dyrr6"]
+[ext_resource type="Script" path="res://Entities/motion_machine.gd" id="1_dyrr6"]
 [ext_resource type="Script" path="res://_Lib/StateChartLib/StateChartState/parallel_state.gd" id="2_bqtug"]
 [ext_resource type="Script" path="res://Inventory/inventory.gd" id="2_k1rd1"]
 [ext_resource type="Script" path="res://_Lib/StateChartLib/StateChartState/compound_state.gd" id="3_g36ug"]
