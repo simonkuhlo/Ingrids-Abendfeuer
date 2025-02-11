@@ -440,7 +440,7 @@ compare_value = true
 
 [node name="ExpressionManager" type="Node" parent="."]
 script = ExtResource("6_4h3qa")
-_Grounded = false
+_Grounded = null
 
 [node name="Grounded" type="Node" parent="ExpressionManager"]
 script = ExtResource("7_j7p42")
