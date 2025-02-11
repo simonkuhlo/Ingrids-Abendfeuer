@@ -1,13 +1,7 @@
 extends Node
 class_name PlayerInventory
 
-
-var coins:int = 0
 var inventory:Array[GameItemContainer] = []
-
-
-func add_coins(amount:int):
-	coins += amount
 
 func add_item(item:GameItem, amount:int):
 	var existing_container = _get_item_container(item)

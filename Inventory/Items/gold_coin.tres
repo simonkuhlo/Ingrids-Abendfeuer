@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="GameItem" load_steps=3 format=3 uid="uid://bfc6fjyf3bhjy"]
+
+[ext_resource type="Script" path="res://Inventory/game_item.gd" id="1_bmwut"]
+[ext_resource type="PackedScene" uid="uid://du6bonphu2h2o" path="res://Assets/1_Graswelt/coin.fbx" id="2_m7wf2"]
+
+[resource]
+script = ExtResource("1_bmwut")
+name = &"gold_coin"
+visual_instance = ExtResource("2_m7wf2")
