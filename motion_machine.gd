@@ -61,9 +61,7 @@ func _physics_process(delta: float) -> void:
 	camera_pivot.rotation.y += _camera_input_direction.x * delta
 	_camera_input_direction = Vector2.ZERO
 	grounded_expression.value = controlled_entity.is_on_floor()
-	# TODO apply friction
 	_apply_friction(current_friction, delta)
-	# TODO apply movement
 	_apply_movement(delta)
 	visualizer1.target_position = controlled_entity.velocity
 	controlled_entity.move_and_slide()
