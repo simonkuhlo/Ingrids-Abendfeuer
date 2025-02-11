@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=4 uid="uid://bhbx3oh1bfghd"]
 
-[ext_resource type="Script" path="res://door.gd" id="1_vw1f6"]
+[ext_resource type="Script" path="res://MapObjects/door.gd" id="1_vw1f6"]
 [ext_resource type="Resource" uid="uid://bnsl7tucqtovb" path="res://Inventory/Items/key_1.tres" id="2_dw5g8"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_biyx7"]
