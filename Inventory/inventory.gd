@@ -5,10 +5,6 @@ class_name PlayerInventory
 var coins:int = 0
 var inventory:Array[GameItemContainer] = []
 
-#func _physics_process(delta):
-	#if Input.is_action_just_pressed("jump"):
-		#for item in inventory:
-			#print(item.item.name)
 
 func add_coins(amount:int):
 	coins += amount
