@@ -94,7 +94,7 @@ func _on_jump_activated():
 
 func _apply_friction(strength:float, delta:float):
 	var friction:float = strength * delta
-	friction += controlled_entity.velocity.length() * 0.01 * delta
+	friction += controlled_entity.velocity.length() * 0.5 * delta
 	controlled_entity.velocity = controlled_entity.velocity.move_toward(Vector3.ZERO, friction)
 
 func apply_force(force:Vector3):
