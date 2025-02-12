@@ -377,34 +377,42 @@ script = ExtResource("2_bqtug")
 
 [node name="MovementMode" type="Node" parent="StateChart/Root" node_paths=PackedStringArray("default_substate")]
 script = ExtResource("3_g36ug")
-default_substate = NodePath("Normal")
+default_substate = NodePath("Grounded")
 
-[node name="Normal" type="Node" parent="StateChart/Root/MovementMode"]
+[node name="Grounded" type="Node" parent="StateChart/Root/MovementMode"]
 script = ExtResource("4_31jh3")
 
-[node name="ToJump" type="Node" parent="StateChart/Root/MovementMode/Normal" node_paths=PackedStringArray("to")]
+[node name="ToJump" type="Node" parent="StateChart/Root/MovementMode/Grounded" node_paths=PackedStringArray("to")]
 script = ExtResource("5_8gt3h")
 to = NodePath("../../Jump")
 trigger = &"want_jump"
 
-[node name="ToDashing" type="Node" parent="StateChart/Root/MovementMode/Normal" node_paths=PackedStringArray("to")]
+[node name="ToDashing" type="Node" parent="StateChart/Root/MovementMode/Grounded" node_paths=PackedStringArray("to")]
 script = ExtResource("5_8gt3h")
 to = NodePath("../../Dashing")
 trigger = &"want_dash"
 
+[node name="ToAirborne" type="Node" parent="StateChart/Root/MovementMode/Grounded" node_paths=PackedStringArray("to")]
+script = ExtResource("5_8gt3h")
+to = NodePath("../../Airborne")
+
+[node name="IsNotGrounded" type="Node" parent="StateChart/Root/MovementMode/Grounded/ToAirborne" node_paths=PackedStringArray("expression")]
+script = ExtResource("7_rb0nu")
+expression = NodePath("../../../../../../ExpressionManager/Grounded")
+
 [node name="Jump" type="Node" parent="StateChart/Root/MovementMode"]
 script = ExtResource("4_31jh3")
 
-[node name="ToNormal" type="Node" parent="StateChart/Root/MovementMode/Jump" node_paths=PackedStringArray("to")]
+[node name="ToGrounded" type="Node" parent="StateChart/Root/MovementMode/Jump" node_paths=PackedStringArray("to")]
 script = ExtResource("5_8gt3h")
-to = NodePath("../../Normal")
+to = NodePath("../../Grounded")
 
 [node name="Dashing" type="Node" parent="StateChart/Root/MovementMode"]
 script = ExtResource("4_31jh3")
 
-[node name="ToNormal" type="Node" parent="StateChart/Root/MovementMode/Dashing" node_paths=PackedStringArray("to")]
+[node name="ToGrounded" type="Node" parent="StateChart/Root/MovementMode/Dashing" node_paths=PackedStringArray("to")]
 script = ExtResource("5_8gt3h")
-to = NodePath("../../Normal")
+to = NodePath("../../Grounded")
 delay_seconds = 0.3
 
 [node name="ToJump" type="Node" parent="StateChart/Root/MovementMode/Dashing" node_paths=PackedStringArray("to")]
@@ -412,29 +420,14 @@ script = ExtResource("5_8gt3h")
 to = NodePath("../../Jump")
 trigger = &"want_jump"
 
-[node name="AviationMode" type="Node" parent="StateChart/Root" node_paths=PackedStringArray("default_substate")]
-script = ExtResource("3_g36ug")
-default_substate = NodePath("Grounded")
-
-[node name="Grounded" type="Node" parent="StateChart/Root/AviationMode"]
+[node name="Airborne" type="Node" parent="StateChart/Root/MovementMode"]
 script = ExtResource("4_31jh3")
 
-[node name="ToAirborne" type="Node" parent="StateChart/Root/AviationMode/Grounded" node_paths=PackedStringArray("to")]
-script = ExtResource("5_8gt3h")
-to = NodePath("../../Airborne")
-
-[node name="IsNotGrounded" type="Node" parent="StateChart/Root/AviationMode/Grounded/ToAirborne" node_paths=PackedStringArray("expression")]
-script = ExtResource("7_rb0nu")
-expression = NodePath("../../../../../../ExpressionManager/Grounded")
-
-[node name="Airborne" type="Node" parent="StateChart/Root/AviationMode"]
-script = ExtResource("4_31jh3")
-
-[node name="ToGrounded" type="Node" parent="StateChart/Root/AviationMode/Airborne" node_paths=PackedStringArray("to")]
+[node name="ToGrounded" type="Node" parent="StateChart/Root/MovementMode/Airborne" node_paths=PackedStringArray("to")]
 script = ExtResource("5_8gt3h")
 to = NodePath("../../Grounded")
 
-[node name="IsGrounded" type="Node" parent="StateChart/Root/AviationMode/Airborne/ToGrounded" node_paths=PackedStringArray("expression")]
+[node name="IsGrounded" type="Node" parent="StateChart/Root/MovementMode/Airborne/ToGrounded" node_paths=PackedStringArray("expression")]
 script = ExtResource("7_rb0nu")
 expression = NodePath("../../../../../../ExpressionManager/Grounded")
 compare_value = true
@@ -734,9 +727,8 @@ hit_back_faces = false
 debug_shape_custom_color = Color(0, 0, 1, 1)
 debug_shape_thickness = 5
 
-[connection signal="physics_processing" from="StateChart/Root/MovementMode/Normal" to="MotionMachine" method="_on_normal_physics_processing"]
+[connection signal="activated" from="StateChart/Root/MovementMode/Grounded" to="MotionMachine" method="_on_grounded_activated"]
+[connection signal="physics_processing" from="StateChart/Root/MovementMode/Grounded" to="MotionMachine" method="_on_normal_physics_processing"]
 [connection signal="activated" from="StateChart/Root/MovementMode/Jump" to="MotionMachine" method="_on_jump_activated"]
-[connection signal="activated" from="StateChart/Root/AviationMode/Grounded" to="MotionMachine" method="_on_grounded_activated"]
-[connection signal="physics_processing" from="StateChart/Root/AviationMode/Grounded" to="MotionMachine" method="_on_grounded_physics_processing"]
-[connection signal="activated" from="StateChart/Root/AviationMode/Airborne" to="MotionMachine" method="_on_airborne_activated"]
-[connection signal="physics_processing" from="StateChart/Root/AviationMode/Airborne" to="MotionMachine" method="_on_airborne_physics_processing"]
+[connection signal="activated" from="StateChart/Root/MovementMode/Airborne" to="MotionMachine" method="_on_airborne_activated"]
+[connection signal="physics_processing" from="StateChart/Root/MovementMode/Airborne" to="MotionMachine" method="_on_airborne_physics_processing"]

@@ -73,6 +73,7 @@ func _on_airborne_activated():
 func _on_airborne_physics_processing(delta):
 	var pull_force:Vector3 = Vector3.DOWN * gravity * delta
 	apply_force(pull_force)
+	_apply_movement(delta)
 
 func _on_grounded_activated():
 	controlled_entity.velocity.y = maxf(controlled_entity.velocity.y, 0)
