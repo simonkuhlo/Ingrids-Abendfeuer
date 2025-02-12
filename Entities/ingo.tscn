@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://fss54nmsn3ok"]
+[gd_scene load_steps=25 format=4 uid="uid://fss54nmsn3ok"]
 
 [ext_resource type="Script" path="res://_Lib/StateChartLib/state_chart.gd" id="1_1alts"]
 [ext_resource type="Script" path="res://Entities/player_controlled_entity.gd" id="1_2xmhn"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://_Lib/StateChartLib/Expressions/bool_expression_node.gd" id="7_j7p42"]
 [ext_resource type="Script" path="res://_Lib/StateChartLib/StateTransition/Guards/ExpressionGuards/boolean_expression_guard.gd" id="7_rb0nu"]
 [ext_resource type="Script" path="res://Entities/independend_camrea_pivot.gd" id="11_4ibmh"]
+[ext_resource type="Script" path="res://Entities/skin.gd" id="12_ikcvd"]
 [ext_resource type="Script" path="res://Entities/collection_range.gd" id="13_b47up"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ujwo"]
@@ -445,7 +446,9 @@ _Grounded = false
 [node name="Grounded" type="Node" parent="ExpressionManager"]
 script = ExtResource("7_j7p42")
 
-[node name="Skin" type="Node3D" parent="."]
+[node name="Skin" type="Node3D" parent="." node_paths=PackedStringArray("animation_player")]
+script = ExtResource("12_ikcvd")
+animation_player = NodePath("Ingo_Walking/AnimationPlayer")
 
 [node name="[Debug] RayCast3D" type="RayCast3D" parent="Skin"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.5, 0)

@@ -27,7 +27,7 @@ class_name MotionMachine
 @export var controlled_entity:CharacterBody3D
 @export var grounded_expression:BoolExpressionNode
 @export var state_chart:StateChart
-@export var body:Node3D
+@export var body:EntitySkin
 @export var compass:Node3D
 @export var visualizer1:RayCast3D
 @export var visualizer2:RayCast3D
@@ -129,3 +129,6 @@ func _apply_movement(delta):
 				else: # Opposite directions
 					next_velocity[i] = move_toward(current_velocity[i], direction[i] * max_move_speed * current_movement_strength, acceleration * delta)
 		controlled_entity.velocity = next_velocity
+		body.walk()
+	else:
+		body.idle()
