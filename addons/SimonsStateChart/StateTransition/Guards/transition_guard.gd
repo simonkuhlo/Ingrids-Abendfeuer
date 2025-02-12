@@ -4,6 +4,7 @@ extends Node
 class_name TransitionGuard
 
 var _state_chart:StateChart
+
 ## Reference to the parent StateChart
 var state_chart:StateChart:
 	set(new_state_chart):

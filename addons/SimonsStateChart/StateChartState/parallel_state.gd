@@ -9,6 +9,11 @@ func activate() -> void:
 	for child_state in child_states:
 		child_state.activate()
 
+func on_processing(delta) -> void:
+	super.on_processing(delta)
+	for child_state in child_states:
+		child_state.on_processing(delta)
+
 func on_physics_processing(delta) -> void:
 	super.on_physics_processing(delta)
 	for child_state in child_states:

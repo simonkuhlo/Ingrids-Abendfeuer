@@ -30,9 +30,8 @@ func add_all_subchildren(state:ParentState, tree_parent:TreeItem):
 			var new_tree_item = create_item(tree_parent)
 			new_tree_item.set_expand_right(0, true)
 			new_tree_item.set_text(0, child.name + " (" + str(child.get_script().get_global_name()) + ")")
-			for transition in child.transition_queue.queued_transitions:
-				if transition:
-					var new_transition_tree_item = create_item(new_tree_item)
-					new_transition_tree_item.set_text(0, transition.transition.name + " -> " + transition.transition.to.name + " [" + str(transition.timer.time_left).pad_decimals(2) + "]")
+			#if child.current_transition:
+				#var new_transition_tree_item = create_item(new_tree_item)
+				#new_transition_tree_item.set_text(0, child.current_transition.name + " -> " + child.current_transition.to.name + " [" + str(child.current_transition_timer.time_left).pad_decimals(2) + "]")
 			if child is ParentState:
 				add_all_subchildren(child, new_tree_item)

@@ -36,11 +36,6 @@ func on_tick() -> void:
 	for child_state in child_states:
 		child_state.on_tick()
 
-func on_processing(delta) -> void:
-	super.on_processing(delta)
-	for child_state in child_states:
-		child_state.on_processing(delta)
-
 func _edit_state_chart(new_state_chart) -> void:
 	super._edit_state_chart(new_state_chart)
 	for child in child_states:

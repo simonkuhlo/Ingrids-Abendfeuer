@@ -6,6 +6,12 @@ class_name CompoundState
 signal state_switched(old_state, new_state)
 
 @export var default_substate:StateChartState
+
+var current_state:StateChartState:
+	set(new_state):
+		_switch_state(new_state)
+	get():
+		return current_state
 var _current_state:StateChartState
 
 func activate() -> void:
@@ -46,19 +52,19 @@ func _switch_state(new_state:StateChartState) -> void:
 		_current_state.deactivate()
 	new_state.activate()
 	_current_state = new_state
-	emit_signal("state_switched", old_state, new_state)
+	state_switched.emit(old_state, new_state)
 
-func _on_transition(transition:StateTransition) -> void:
+func _on_want_transition(transition:StateTransition) -> void:
 	_switch_state(transition.to)
 
 func _add_child_state(child_state:StateChartState) -> void:
 	if !Engine.is_editor_hint():
-		child_state.connect("state_transition", _on_transition)
+		child_state.want_transition.connect(_on_want_transition)
 	super._add_child_state(child_state)
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray = []
-	
+
 	if !default_substate:
 		warnings.append("No default Substate selected.")
 

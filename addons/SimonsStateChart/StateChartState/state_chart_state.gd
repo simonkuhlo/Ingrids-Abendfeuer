@@ -4,7 +4,7 @@ extends Node
 class_name StateChartState
 
 ## Emitted when State wants to transition
-signal state_transition(transition:StateTransition)
+signal want_transition(transition:StateTransition)
 
 ## Emitted when State gets activated
 signal activated()
@@ -44,14 +44,10 @@ var transitions: Array[StateTransition]:
 			_add_all_transitions()
 		return _cached_transitions
 
-var transition_queue:TransitionQueue
-
 ## Called when the Node enters the SceneTree
 func _ready() -> void:
 	if !Engine.is_editor_hint():
-		transition_queue = TransitionQueue.new()
-		add_child(transition_queue)
-		transition_queue.connect("transition_ready", _on_transition_ready)
+		pass
 	child_entered_tree.connect(_on_child_entered_tree)
 	child_exiting_tree.connect(_on_child_exiting_tree)
 	child_order_changed.connect(_on_tree_changed)
@@ -89,8 +85,6 @@ func on_processing(delta) -> void:
 	if active:
 		emit_signal("processing", delta)
 
-var counter = 0
-
 ## Called when active and physics_processing (once per physics tick)
 func on_physics_processing(delta) -> void:
 	if active:
@@ -99,24 +93,18 @@ func on_physics_processing(delta) -> void:
 ## Called when State gets activated
 func activate() -> void:
 	active = true
-	emit_signal("activated")
+	activated.emit()
 
 ## Called when State gets deactivated
 func deactivate() -> void:
-	transition_queue.clear_transitions()
 	active = false
-	emit_signal("deactivated")
+	deactivated.emit()
 
 ## Called when a child transition signals that the transition is possible
 func _on_transition_possible(transition:StateTransition) -> void:
 	if active:
-		transition_queue.queue_transition(transition)
-
-
-func _on_transition_ready(transition:StateTransition) -> void:
-	if active:
 		transition.transition_taken.emit()
-		emit_signal("state_transition", transition)
+		want_transition.emit(transition)
 
 ## Try all transitions that don't have a specific Trigger
 func _try_transitions() -> void:
@@ -133,7 +121,8 @@ func _add_all_transitions() -> void:
 ## Add a new transition to this state
 func _add_transition(transition:StateTransition) -> void:
 	if !Engine.is_editor_hint():
-		transition.connect("transition_possible", _on_transition_possible)
+		transition.parent_state = self
+		transition.transition_possible.connect(_on_transition_possible)
 	_cached_transitions.append(transition)
 	update_configuration_warnings()
 

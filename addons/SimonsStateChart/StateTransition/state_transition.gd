@@ -37,11 +37,12 @@ var state_chart:StateChart:
 	get:
 		return _state_chart
 
+var parent_state:StateChartState
+
 func _edit_state_chart(new_state_chart) -> void:
 	_state_chart = new_state_chart
 	for guard in guards:
 		guard.state_chart = state_chart
-
 
 ## Called when the Node enters the SceneTree
 func _ready() -> void:
@@ -73,10 +74,11 @@ func on_event_received(event:StringName) -> void:
 
 ## Check all Guards if they are statisfied. If they are, signal that transition is possible
 func try_transition() -> void:
+	#print(name)
 	for guard:TransitionGuard in guards:
 		if !guard.is_statisfied():
 			return
-	emit_signal("transition_possible", self)
+	transition_possible.emit(self)
 
 ## Get all current guards of this Transition
 func _add_all_guards() -> void:
@@ -84,7 +86,6 @@ func _add_all_guards() -> void:
 	for child in get_children():
 		if child is TransitionGuard:
 			_cached_guards.append(child)
-
 
 ## Add a new guard 
 func _add_guard(guard:TransitionGuard):
