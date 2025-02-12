@@ -62,7 +62,6 @@ func _physics_process(delta: float) -> void:
 	_camera_input_direction = Vector2.ZERO
 	grounded_expression.value = controlled_entity.is_on_floor()
 	_apply_friction(current_friction, delta)
-	_apply_movement(delta)
 	visualizer1.target_position = controlled_entity.velocity
 	controlled_entity.move_and_slide()
 
@@ -81,6 +80,7 @@ func _on_grounded_activated():
 	current_friction = ground_friction
 
 func _on_normal_physics_processing(delta):
+	_apply_movement(delta)
 	if Input.is_action_just_pressed("jump") and grounded_expression.value:
 		state_chart.send_event("want_jump")
 
