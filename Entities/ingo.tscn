@@ -364,9 +364,9 @@ grounded_expression = NodePath("../ExpressionManager/Grounded")
 state_chart = NodePath("../StateChart")
 body = NodePath("../Skin")
 compass = NodePath("../Compass")
-visualizer1 = NodePath("../Velocity")
-visualizer2 = NodePath("../MovementVelocity")
-visualizer3 = NodePath("../Direction")
+visualizer1 = NodePath("../[Debug] Velocity")
+visualizer2 = NodePath("../[Debug] MovementVelocity")
+visualizer3 = NodePath("../[Debug] Direction")
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("1_1alts")
@@ -440,14 +440,14 @@ compare_value = true
 
 [node name="ExpressionManager" type="Node" parent="."]
 script = ExtResource("6_4h3qa")
-_Grounded = null
+_Grounded = false
 
 [node name="Grounded" type="Node" parent="ExpressionManager"]
 script = ExtResource("7_j7p42")
 
 [node name="Skin" type="Node3D" parent="."]
 
-[node name="RayCast3D" type="RayCast3D" parent="Skin"]
+[node name="[Debug] RayCast3D" type="RayCast3D" parent="Skin"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.5, 0)
 target_position = Vector3(0, 0.7, 0)
 debug_shape_custom_color = Color(0.721569, 0, 0, 1)
@@ -718,15 +718,15 @@ entity = NodePath("..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CollectionRange"]
 shape = SubResource("CylinderShape3D_jjk4s")
 
-[node name="Velocity" type="RayCast3D" parent="."]
+[node name="[Debug] Velocity" type="RayCast3D" parent="."]
 collide_with_bodies = false
 debug_shape_custom_color = Color(0, 0.870588, 0, 1)
 
-[node name="Direction" type="RayCast3D" parent="."]
+[node name="[Debug] Direction" type="RayCast3D" parent="."]
 hit_back_faces = false
 debug_shape_custom_color = Color(0, 0.72549, 0.815686, 1)
 
-[node name="MovementVelocity" type="RayCast3D" parent="."]
+[node name="[Debug] MovementVelocity" type="RayCast3D" parent="."]
 hit_back_faces = false
 debug_shape_custom_color = Color(0, 0, 1, 1)
 debug_shape_thickness = 5
