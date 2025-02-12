@@ -310,23 +310,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.72752, 0)
 [node name="ExpressionManager" parent="IngoNew" index="3"]
 _Grounded = null
 
-[node name="Skeleton3D" parent="IngoNew/Skin/Ingo_Walking/Armature" index="0"]
-bones/0/rotation = Quaternion(-3.47669e-09, 0.999976, -0.00686945, -3.72849e-06)
-bones/13/rotation = Quaternion(-0.0173436, 0.604671, 0.796206, -0.0113445)
-bones/14/rotation = Quaternion(0.187219, -0.020695, 0.00882274, 0.982061)
-bones/15/rotation = Quaternion(-0.171558, 0.000614116, -0.00353673, 0.985168)
-bones/16/rotation = Quaternion(0.70694, -0.00789404, 0.00800626, 0.707184)
-bones/18/rotation = Quaternion(-0.242144, 0.00495535, 0.0304646, 0.969749)
-bones/19/rotation = Quaternion(-0.11064, -0.00198343, 0.0178134, 0.993699)
-bones/20/rotation = Quaternion(0.798505, 0.0133726, -0.0102043, 0.601753)
-bones/23/rotation = Quaternion(-0.327135, 0.568608, 0.723698, -0.214311)
-bones/24/rotation = Quaternion(0.171977, -0.000746868, -0.0132355, 0.985012)
-bones/25/rotation = Quaternion(-0.148078, -0.000579143, 0.00386047, 0.988968)
-bones/26/rotation = Quaternion(0.648946, -0.00324537, 0.00357129, 0.760819)
-bones/29/rotation = Quaternion(-0.277175, -0.00733099, 0.0696121, 0.958266)
-bones/30/rotation = Quaternion(-0.214439, 0.00502689, -0.0228929, 0.976456)
-bones/31/rotation = Quaternion(0.778468, -0.00767593, 0.00578844, 0.627611)
-
 [node name="IngoPathVisualizer" type="Path3D" parent="." node_paths=PackedStringArray("object_to_follow")]
 curve = SubResource("Curve3D_8lcpf")
 script = ExtResource("14_xkpx2")

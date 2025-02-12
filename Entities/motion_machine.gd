@@ -74,6 +74,8 @@ func _on_airborne_physics_processing(delta):
 	var pull_force:Vector3 = Vector3.DOWN * gravity * delta
 	apply_force(pull_force)
 	_apply_movement(delta)
+	if Input.is_action_just_pressed("dash"):
+		state_chart.send_event("want_dash")
 
 func _on_grounded_activated():
 	controlled_entity.velocity.y = maxf(controlled_entity.velocity.y, 0)
@@ -82,8 +84,10 @@ func _on_grounded_activated():
 
 func _on_normal_physics_processing(delta):
 	_apply_movement(delta)
-	if Input.is_action_just_pressed("jump") and grounded_expression.value:
+	if Input.is_action_just_pressed("jump"):
 		state_chart.send_event("want_jump")
+	if Input.is_action_just_pressed("dash"):
+		state_chart.send_event("want_dash")
 
 func _on_jump_activated():
 	apply_force(Vector3.UP * jump_strength)
@@ -133,3 +137,6 @@ func _apply_movement(delta):
 		body.walk()
 	else:
 		body.idle()
+
+func _on_dashing_physics_processing(delta):
+	controlled_entity.velocity = controlled_entity.transform.basis * Vector3.BACK * 30
