@@ -11,10 +11,11 @@ class_name CooldownGuard
 var timer:Timer = Timer.new()
 
 func _ready():
-	timer.autostart = false
-	timer.one_shot = true
-	timer.wait_time = cooldown_seconds
-	add_child(timer)
+	if !Engine.is_editor_hint():
+		timer.autostart = false
+		timer.one_shot = true
+		timer.wait_time = cooldown_seconds
+		add_child(timer)
 	var parent_transition = get_parent()
 	if parent_transition is StateTransition:
 		parent_transition.transition_taken.connect(_on_transition_taken)

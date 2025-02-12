@@ -106,7 +106,7 @@ func set_force(force:Vector3):
 	controlled_entity.velocity = force
 
 func _prepare_movement(delta) -> Vector3:
-	var input_vector:Vector2 = Input.get_vector("move_right", "move_left", "move_backwards",  "move_forwards") 
+	var input_vector:Vector2 = Input.get_vector("move_right", "move_left", "move_backwards",  "move_forwards").normalized()
 	var direction:Vector3
 	if _aiming:
 		body.rotation.y = lerp_angle(body.rotation.y, 0, turning_rate * delta)
