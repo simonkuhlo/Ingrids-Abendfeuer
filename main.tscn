@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://fss54nmsn3ok" path="res://Entities/ingo.tscn" id="13_i3750"]
 [ext_resource type="Script" path="res://UI/reload_button.gd" id="13_lqe47"]
 [ext_resource type="Script" path="res://Entities/following_path.gd" id="14_xkpx2"]
-[ext_resource type="PackedScene" uid="uid://c7ecds4ls4bhc" path="res://_Lib/StateChartLib/Tools/StateDebugger/state_chart_debugger.tscn" id="16_40rax"]
+[ext_resource type="PackedScene" uid="uid://c7ecds4ls4bhc" path="res://addons/SimonsStateChart/Tools/StateDebugger/state_chart_debugger.tscn" id="16_40rax"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_adlqo"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -308,7 +308,7 @@ item = ExtResource("13_1o1m4")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.72752, 0)
 
 [node name="ExpressionManager" parent="IngoNew" index="3"]
-_Grounded = null
+_Grounded = false
 
 [node name="IngoPathVisualizer" type="Path3D" parent="." node_paths=PackedStringArray("object_to_follow")]
 curve = SubResource("Curve3D_8lcpf")
@@ -343,11 +343,12 @@ script = ExtResource("13_lqe47")
 world = NodePath("../../World")
 
 [node name="StateChartDebugger" parent="UI" node_paths=PackedStringArray("state_to_watch") instance=ExtResource("16_40rax")]
-anchors_preset = -1
-anchor_top = 0.048
-anchor_right = 0.374
-offset_top = -0.104
-offset_right = 0.151978
+offset_left = 17.0
+offset_top = 41.0
+offset_right = -708.0
+offset_bottom = -41.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
 state_to_watch = NodePath("../../IngoNew/StateChart/Root")
 
 [connection signal="body_entered" from="World/Objects/WorldBoundary" to="World/Objects/WorldBoundary" method="_on_body_entered"]

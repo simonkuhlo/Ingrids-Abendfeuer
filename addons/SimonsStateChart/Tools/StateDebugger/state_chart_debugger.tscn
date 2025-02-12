@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7ecds4ls4bhc"]
+
+[ext_resource type="Script" path="res://addons/SimonsStateChart/Tools/StateDebugger/state_chart_debugger.gd" id="1_7i0xt"]
+[ext_resource type="Script" path="res://addons/SimonsStateChart/Tools/StateDebugger/dynamic_tree.gd" id="2_uggtb"]
+[ext_resource type="Script" path="res://addons/SimonsStateChart/Tools/StateDebugger/settings.gd" id="3_fkwex"]
+[ext_resource type="Script" path="res://addons/SimonsStateChart/Tools/StateDebugger/entire_tree.gd" id="3_lfg3o"]
+[ext_resource type="FontFile" uid="uid://bb8skx6vfxbvg" path="res://addons/SimonsStateChart/Tools/Fonts/NotoColorEmoji-Regular.ttf" id="4_j6rum"]
+
+[sub_resource type="FontVariation" id="FontVariation_plmjy"]
+fallbacks = Array[Font]([ExtResource("4_j6rum")])
+
+[node name="StateChartDebugger" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7i0xt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Hide / Show"
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+current_tab = 0
+
+[node name="EntireTree" type="Tree" parent="VBoxContainer/TabContainer" node_paths=PackedStringArray("root", "settings")]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_plmjy")
+script = ExtResource("3_lfg3o")
+root = NodePath("../../..")
+settings = NodePath("../Settings")
+metadata/_tab_index = 0
+
+[node name="DynamicTree" type="Tree" parent="VBoxContainer/TabContainer" node_paths=PackedStringArray("root", "settings")]
+visible = false
+layout_mode = 2
+script = ExtResource("2_uggtb")
+root = NodePath("../../..")
+settings = NodePath("../Settings")
+metadata/_tab_index = 1
+
+[node name="Settings" type="Control" parent="VBoxContainer/TabContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("3_fkwex")
+metadata/_tab_index = 2
+
+[node name="SettingsContainer" type="GridContainer" parent="VBoxContainer/TabContainer/Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Settings/SettingsContainer"]
+layout_mode = 2
+text = "Update after ticks: "
+
+[node name="update_count" type="LineEdit" parent="VBoxContainer/TabContainer/Settings/SettingsContainer"]
+layout_mode = 2
+text = "0"
+placeholder_text = "0"
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="text_submitted" from="VBoxContainer/TabContainer/Settings/SettingsContainer/update_count" to="VBoxContainer/TabContainer/Settings" method="_on_update_count_text_submitted"]
