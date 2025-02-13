@@ -14,21 +14,28 @@ class_name SkillSlot
 
 ## The current cooldown of the Spell
 var cooldown_timer:Timer = Timer.new()
+var cast_timer:Timer = Timer.new()
 
 
-enum ReadyState {READY, ON_COOLDOWN, NO_RESOURCE, BLOCKED}
+enum ReadyState {READY, ON_COOLDOWN, NO_RESOURCE, BLOCKED, CASTING}
 ## If the Spell currently is ready to cast or not
 var ready_state:ReadyState = ReadyState.BLOCKED
 
 func ready() -> void:
 	cooldown_timer.autostart = false
 	cooldown_timer.one_shot = true
+	cast_timer.autostart = false
+	cast_timer.one_shot = true
 	add_child(cooldown_timer)
 	if resource:
 		cooldown_timer.wait_time = resource.cooldown
+		cast_timer.wait_time = resource.cooldown
 
 func _physics_process(delta: float) -> void:
 	ready_state = get_ready_state()
+	if ready_state == ReadyState.READY:
+		if Input.is_action_just_pressed(trigger):
+			cast_skill()
 
 func get_ready_state() -> ReadyState:
 	if !cooldown_timer.is_stopped():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://fss54nmsn3ok"]
+[gd_scene load_steps=29 format=4 uid="uid://fss54nmsn3ok"]
 
 [ext_resource type="Script" path="res://addons/SimonsStateChart/state_chart.gd" id="1_1alts"]
 [ext_resource type="Script" path="res://Entities/player_controlled_entity.gd" id="1_2xmhn"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://Inventory/inventory.gd" id="2_k1rd1"]
 [ext_resource type="Script" path="res://addons/SimonsStateChart/StateChartState/compound_state.gd" id="3_g36ug"]
 [ext_resource type="Script" path="res://addons/SimonsStateChart/StateChartState/atomic_state.gd" id="4_31jh3"]
+[ext_resource type="Script" path="res://Skills/skill_slot.gd" id="4_56nk8"]
+[ext_resource type="Resource" uid="uid://ds8rpicpwolih" path="res://Skills/Skills/Jump/JumpSkill.tres" id="5_ho06a"]
 [ext_resource type="Script" path="res://addons/SimonsStateChart/Expressions/expression_manager.gd" id="6_4h3qa"]
 [ext_resource type="Script" path="res://addons/SimonsStateChart/Expressions/bool_expression_node.gd" id="7_j7p42"]
 [ext_resource type="Script" path="res://addons/SimonsStateChart/StateTransition/Guards/ExpressionGuards/boolean_expression_guard.gd" id="7_rb0nu"]
@@ -341,16 +343,17 @@ _data = {
 "Ingo": SubResource("Animation_2pry3")
 }
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_toe51"]
-
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_jjk4s"]
 radius = 2.0
 
-[node name="IngoNew" type="CharacterBody3D" node_paths=PackedStringArray("motion_machine", "inventory")]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_toe51"]
+
+[node name="IngoNew" type="CharacterBody3D" node_paths=PackedStringArray("motion_machine", "inventory", "skill_instances")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_2xmhn")
 motion_machine = NodePath("MotionMachine")
 inventory = NodePath("PlayerInventory")
+skill_instances = NodePath("SkillInstances")
 
 [node name="PlayerInventory" type="Node" parent="."]
 script = ExtResource("2_k1rd1")
@@ -369,6 +372,16 @@ compass = NodePath("../Compass")
 visualizer1 = NodePath("../[Debug] Velocity")
 visualizer2 = NodePath("../[Debug] MovementVelocity")
 visualizer3 = NodePath("../[Debug] Direction")
+
+[node name="SkillSlots" type="Node" parent="."]
+
+[node name="SkillSlot1" type="Node" parent="SkillSlots" node_paths=PackedStringArray("player")]
+script = ExtResource("4_56nk8")
+trigger = &"skill_1"
+resource = ExtResource("5_ho06a")
+player = NodePath("../..")
+
+[node name="SkillInstances" type="Node" parent="."]
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("1_1alts")
@@ -743,9 +756,6 @@ spring_length = 8.0
 
 [node name="Compass" type="Node3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_toe51")
-
 [node name="CollectionRange" type="Area3D" parent="." node_paths=PackedStringArray("inventory", "entity")]
 script = ExtResource("13_b47up")
 inventory = NodePath("../PlayerInventory")
@@ -753,6 +763,9 @@ entity = NodePath("..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CollectionRange"]
 shape = SubResource("CylinderShape3D_jjk4s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_toe51")
 
 [node name="[Debug] Velocity" type="RayCast3D" parent="."]
 collide_with_bodies = false

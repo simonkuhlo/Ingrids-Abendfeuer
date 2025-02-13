@@ -307,6 +307,9 @@ item = ExtResource("13_1o1m4")
 [node name="IngoNew" parent="." instance=ExtResource("13_i3750")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.72752, 0)
 
+[node name="ExpressionManager" parent="IngoNew" index="4"]
+_Grounded = null
+
 [node name="IngoPathVisualizer" type="Path3D" parent="." node_paths=PackedStringArray("object_to_follow")]
 curve = SubResource("Curve3D_8lcpf")
 script = ExtResource("14_xkpx2")
