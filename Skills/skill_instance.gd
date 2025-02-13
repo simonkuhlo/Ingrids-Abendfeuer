@@ -1,7 +1,8 @@
 extends Node
 class_name SkillInstance
 
-## Instance of a skill resource. Holds all game logic of the Skill
+var caster:Player
 
-## The input that triggers interaction with the spell
-var trigger:StringName
+## Instance of a skill resource. Holds all game logic of the Skill. 
+func _ready():
+	pass

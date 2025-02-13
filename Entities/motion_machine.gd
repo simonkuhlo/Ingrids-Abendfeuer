@@ -15,6 +15,7 @@ class_name MotionMachine
 @export var ground_friction:float = 30
 @export var ground_acceleration:float = 40
 @export var gravity:float = 9.81
+
 @export_subgroup("Camera")
 @export var mouse_sensitivity:float = 1
 @export var camera_tilt_upper_limit:float = PI / 3.0
@@ -22,7 +23,7 @@ class_name MotionMachine
 
 @export_group("Linking")
 ## The Camera3D associated with the controlled entity
-@export var camera:Camera3D
+@export var _camera:Camera3D
 ## The CameraPivot of the selected camera
 @export var camera_pivot:Node3D
 ## The entity that should be controlled by this script

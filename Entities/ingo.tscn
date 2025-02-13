@@ -355,12 +355,11 @@ inventory = NodePath("PlayerInventory")
 [node name="PlayerInventory" type="Node" parent="."]
 script = ExtResource("2_k1rd1")
 
-[node name="MotionMachine" type="Node" parent="." node_paths=PackedStringArray("camera", "camera_pivot", "controlled_entity", "grounded_expression", "state_chart", "body", "compass", "visualizer1", "visualizer2", "visualizer3")]
+[node name="MotionMachine" type="Node" parent="." node_paths=PackedStringArray("camera_pivot", "controlled_entity", "grounded_expression", "state_chart", "body", "compass", "visualizer1", "visualizer2", "visualizer3")]
 script = ExtResource("1_dyrr6")
 max_move_speed = 7.0
 acceleration = 40.0
 mouse_sensitivity = 0.4
-camera = NodePath("../IndependendCamreaPivot/SpringArm3D/Camera3D")
 camera_pivot = NodePath("../IndependendCamreaPivot")
 controlled_entity = NodePath("..")
 grounded_expression = NodePath("../ExpressionManager/Grounded")
