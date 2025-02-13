@@ -40,8 +40,8 @@ var _camera_input_direction:Vector2 = Vector2.ZERO
 var previous_movement_velocity:Vector3 = Vector3.ZERO
 var movement_velocity:Vector3 = Vector3.ZERO
 
-@onready var current_movement_strength:float = 1
-@onready var current_friction:float = 1
+var current_movement_strength:float = 1
+var current_friction:float = 1
 
 func _unhandled_input(event: InputEvent) -> void:
 	var player_is_using_mouse := (
