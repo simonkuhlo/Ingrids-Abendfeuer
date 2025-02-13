@@ -37,9 +37,6 @@ class_name MotionMachine
 var _aiming:bool = false
 var _camera_input_direction:Vector2 = Vector2.ZERO
 
-var previous_movement_velocity:Vector3 = Vector3.ZERO
-var movement_velocity:Vector3 = Vector3.ZERO
-
 var current_movement_strength:float = 1
 var current_friction:float = 1
 
@@ -68,7 +65,6 @@ func _physics_process(delta: float) -> void:
 func _on_airborne_activated():
 	acceleration = 5
 	current_friction = air_friction
-	apply_force(movement_velocity)
 
 func _on_airborne_physics_processing(delta):
 	var pull_force:Vector3 = Vector3.DOWN * gravity * delta
@@ -101,8 +97,6 @@ func apply_force(force:Vector3):
 	controlled_entity.velocity += force
 
 func set_force(force:Vector3):
-	movement_velocity = Vector3.ZERO
-	previous_movement_velocity = Vector3.ZERO
 	controlled_entity.velocity = force
 
 func _prepare_movement(delta) -> Vector3:
