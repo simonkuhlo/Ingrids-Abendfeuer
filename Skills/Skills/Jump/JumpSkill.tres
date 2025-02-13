@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SkillResource" load_steps=3 format=3 uid="uid://ds8rpicpwolih"]
+
+[ext_resource type="Script" path="res://_Lib/player_resource_cost.gd" id="1_h53i7"]
+[ext_resource type="Script" path="res://Skills/skill_resource.gd" id="2_nmc28"]
+
+[resource]
+script = ExtResource("2_nmc28")
+name = &"Jump"
+cooldown = 1.0
+costs = Array[ExtResource("1_h53i7")]([])
+cast_mode = 0
