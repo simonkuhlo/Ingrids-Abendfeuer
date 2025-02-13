@@ -10,8 +10,10 @@ class_name MotionMachine
 @export_group("Settings")
 ## The friction while airborne
 @export var air_friction:float = 5
+@export var air_acceleration:float = 5
 ## The friction while grounded
 @export var ground_friction:float = 30
+@export var ground_acceleration:float = 40
 @export var gravity:float = 9.81
 @export_subgroup("Camera")
 @export var mouse_sensitivity:float = 1
@@ -37,8 +39,11 @@ class_name MotionMachine
 var _aiming:bool = false
 var _camera_input_direction:Vector2 = Vector2.ZERO
 
+## The magnitude of Force that can be applied to the body by movement
 var current_movement_strength:float = 1
 var current_friction:float = 1
+
+const friction_playerspeed_factor:float = 0.5
 
 func _unhandled_input(event: InputEvent) -> void:
 	var player_is_using_mouse := (
@@ -63,7 +68,7 @@ func _physics_process(delta: float) -> void:
 	controlled_entity.move_and_slide()
 
 func _on_airborne_activated():
-	acceleration = 5
+	acceleration = air_acceleration
 	current_friction = air_friction
 
 func _on_airborne_physics_processing(delta):
@@ -75,7 +80,7 @@ func _on_airborne_physics_processing(delta):
 
 func _on_grounded_activated():
 	controlled_entity.velocity.y = maxf(controlled_entity.velocity.y, 0)
-	acceleration = 40
+	acceleration = ground_acceleration
 	current_friction = ground_friction
 
 func _on_normal_physics_processing(delta):
@@ -90,7 +95,7 @@ func _on_jump_activated():
 
 func _apply_friction(strength:float, delta:float):
 	var friction:float = strength * delta
-	friction += controlled_entity.velocity.length() * 0.5 * delta
+	friction += controlled_entity.velocity.length() * friction_playerspeed_factor * delta
 	controlled_entity.velocity = controlled_entity.velocity.move_toward(Vector3.ZERO, friction)
 
 func apply_force(force:Vector3):
