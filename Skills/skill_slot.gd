@@ -27,6 +27,7 @@ func ready() -> void:
 	cast_timer.autostart = false
 	cast_timer.one_shot = true
 	add_child(cooldown_timer)
+	add_child(cast_timer)
 	if resource:
 		cooldown_timer.wait_time = resource.cooldown
 		cast_timer.wait_time = resource.cooldown
