@@ -105,21 +105,30 @@ func apply_force(force:Vector3):
 func set_force(force:Vector3):
 	controlled_entity.velocity = force
 
+var _target_angle:float = 0
 func _prepare_movement(delta) -> Vector3:
-	var input_vector:Vector2 = Input.get_vector("move_right", "move_left", "move_backwards",  "move_forwards").normalized()
-	var direction:Vector3
+	var move_direction:Vector3 = Vector3.ZERO
+	# Calculate movement input and align it to the camera's direction.
+	var raw_input := Input.get_vector("move_left", "move_right", "move_forwards", "move_backwards" , 0.4)
+	var forward:Vector3
+	var right:Vector3
+	# Should be projected onto the ground plane.
+	forward = _camera.global_basis.z
+	right = _camera.global_basis.x
+	move_direction = forward * raw_input.y + right * raw_input.x
+	move_direction.y = 0.0
+	move_direction = move_direction.normalized()
 	if _aiming:
-		body.rotation.y = lerp_angle(body.rotation.y, 0, turning_rate * delta)
-		controlled_entity.global_rotation.y = lerp_angle(controlled_entity.global_rotation.y, camera_pivot.global_rotation.y, turning_rate * delta)
-		direction = (controlled_entity.transform.basis * Vector3(input_vector.x, 0, input_vector.y)).normalized()
+		_target_angle = Vector3.FORWARD.signed_angle_to(forward, Vector3.UP)
 	else:
-		direction = (camera_pivot.transform.basis * Vector3(input_vector.x, 0, input_vector.y)).normalized()
-		if input_vector:
-			compass.look_at(compass.global_transform.origin + direction)
-			body.rotation.y = lerp_angle(body.rotation.y, compass.rotation.y - deg_to_rad(180), turning_rate * delta)
-	visualizer3.target_position = direction
-	direction.y = 0
-	return direction
+		# To not orient the character too abruptly, we filter movement inputs we
+		# consider when turning the skin. This also ensures we have a normalized
+		# direction for the rotation basis.
+		if move_direction.length() > 0.2:
+			var view_direction = move_direction.normalized()
+			_target_angle = Vector3.BACK.signed_angle_to(view_direction, Vector3.UP)
+	body.global_rotation.y = lerp_angle(body.rotation.y, _target_angle, turning_rate * delta)
+	return move_direction
 
 func _apply_movement(delta):
 	var direction = _prepare_movement(delta)
