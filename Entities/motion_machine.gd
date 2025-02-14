@@ -148,4 +148,4 @@ func _apply_movement(delta):
 		body.idle()
 
 func _on_dashing_physics_processing(delta):
-	controlled_entity.velocity = controlled_entity.global_transform.basis * Vector3.BACK * 30
+	controlled_entity.velocity = body.global_transform.basis * Vector3.BACK * 30
