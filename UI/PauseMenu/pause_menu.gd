@@ -25,10 +25,8 @@ func _input(event: InputEvent) -> void:
 			menuopen = true
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-
 func _on_restart_pressed() -> void:
 	GlobalData.RestartLevel()
-
 
 func _on_main_menu_pressed() -> void:
 	GlobalData.CallMainMenu()
