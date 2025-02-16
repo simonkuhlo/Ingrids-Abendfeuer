@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cm011l2ybtnrk"]
+[gd_scene load_steps=6 format=3 uid="uid://cm011l2ybtnrk"]
 
 [ext_resource type="PackedScene" uid="uid://b5v5oiroo5e78" path="res://Assets/2_Cave/Cave.fbx" id="1_uidm2"]
 [ext_resource type="PackedScene" uid="uid://fss54nmsn3ok" path="res://Entities/ingo.tscn" id="2_la6iq"]
-[ext_resource type="PackedScene" uid="uid://cyee0rxwacafl" path="res://UI/PauseMenu/PauseMenu.tscn" id="3_m1yik"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_8f41i"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -96,7 +95,5 @@ bones/30/position = Vector3(-4.87427e-08, 0.284847, -6.74855e-08)
 bones/30/rotation = Quaternion(-0.0386458, 0.000905612, -0.0234198, 0.998978)
 bones/31/position = Vector3(-3.74869e-09, 0.373955, 3.79248e-08)
 bones/31/rotation = Quaternion(0.648924, -0.00647333, 0.00710782, 0.760793)
-
-[node name="PauseMenu" parent="." instance=ExtResource("3_m1yik")]
 
 [editable path="IngoNew"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://gbotbhct1jio"]
+[gd_scene load_steps=25 format=4 uid="uid://gbotbhct1jio"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_4f5k8"]
 [ext_resource type="PackedScene" uid="uid://6kuhaeceprnn" path="res://Assets/1_Graswelt/bridge_poles.fbx" id="2_ijh58"]
@@ -12,7 +12,6 @@
 [ext_resource type="Resource" uid="uid://bfc6fjyf3bhjy" path="res://Inventory/Items/gold_coin.tres" id="12_ritw4"]
 [ext_resource type="PackedScene" uid="uid://fss54nmsn3ok" path="res://Entities/ingo.tscn" id="13_ard6n"]
 [ext_resource type="PackedScene" uid="uid://dgwoynnp7jayb" path="res://LevelTeleporter/LevelTransporter.tscn" id="13_c7m7o"]
-[ext_resource type="PackedScene" uid="uid://cyee0rxwacafl" path="res://UI/PauseMenu/PauseMenu.tscn" id="14_t8ae4"]
 [ext_resource type="PackedScene" uid="uid://cm011l2ybtnrk" path="res://Maps/02Cave.tscn" id="14_wtte8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_auckf"]
@@ -236,7 +235,8 @@ nextLevel = ExtResource("14_wtte8")
 [node name="IngoNew" parent="." instance=ExtResource("13_ard6n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.72752, 0)
 
-[node name="PauseMenu" parent="." instance=ExtResource("14_t8ae4")]
+[node name="ExpressionManager" parent="IngoNew" index="5"]
+_Grounded = null
 
 [connection signal="body_entered" from="World/Objects/WorldBoundary" to="World/Objects/WorldBoundary" method="_on_body_entered"]
 
