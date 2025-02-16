@@ -33,7 +33,13 @@ func load_inv_data():
 		print("Error loading Data")
 		
 func CallMainMenu(SaveData:bool = false, temp_inv:PlayerInventory = preload("res://Inventory/inventory.gd").new()):
+	get_tree().paused = false
 	if(SaveData):
 		mergeInventories(temp_inv)
 		save_inv_data()
 	get_tree().change_scene_to_packed(MainMenuScene)
+	
+	
+func RestartLevel():
+	get_tree().paused = false
+	get_tree().reload_current_scene()
