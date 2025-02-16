@@ -14,7 +14,7 @@ enum ReadyState {READY, ON_COOLDOWN, NO_RESOURCE, BLOCKED, CASTING}
 ## If the Spell currently is ready to cast or not
 var ready_state:ReadyState = ReadyState.BLOCKED
 
-func ready() -> void:
+func _ready() -> void:
 	cooldown_timer.autostart = false
 	cooldown_timer.one_shot = true
 	cast_timer.autostart = false
@@ -45,3 +45,4 @@ func get_ready_state() -> ReadyState:
 
 func cast_skill():
 	owning_player.motion_machine.apply_force(Vector3.UP * 5)
+	cooldown_timer.start(resource.cooldown)
