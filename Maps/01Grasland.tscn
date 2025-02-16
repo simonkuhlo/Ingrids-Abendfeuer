@@ -236,9 +236,6 @@ nextLevel = ExtResource("14_wtte8")
 [node name="IngoNew" parent="." instance=ExtResource("13_ard6n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.72752, 0)
 
-[node name="ExpressionManager" parent="IngoNew" index="5"]
-_Grounded = null
-
 [node name="PauseMenu" parent="." instance=ExtResource("14_t8ae4")]
 
 [connection signal="body_entered" from="World/Objects/WorldBoundary" to="World/Objects/WorldBoundary" method="_on_body_entered"]
