@@ -5,8 +5,12 @@ extends Node
 
 @onready var fullInv:PlayerInventory = preload("res://Inventory/inventory.gd").new()
 
-@onready var MainMenuScene = load("res://MainMenu/MainMenu.tscn")
-# Called when the node enters the scene tree for the first time.
+@onready var MainMenuScene:PackedScene = load("res://MainMenu/MainMenu.tscn")
+
+enum PlayState {MAINMENU, INLEVEL}
+@onready var state:PlayState = PlayState.MAINMENU
+@onready var currentScene:PackedScene = MainMenuScene
+
 func _ready() -> void:
 	load_inv_data()
 
@@ -22,8 +26,14 @@ func mergeInventories(Inv: PlayerInventory):
 func ProccedToNextLevel(nextLevel:PackedScene, InventoryData: PlayerInventory):
 	mergeInventories(InventoryData)
 	save_inv_data()
-	print(get_tree().change_scene_to_packed(nextLevel))
-	
+	LoadLevel(nextLevel)
+
+func LoadLevel(levelToLoad:PackedScene):
+	get_tree().paused = false
+	state = PlayState.INLEVEL
+	get_tree().change_scene_to_packed(levelToLoad)
+	currentScene = levelToLoad
+
 func load_inv_data():
 	if FileAccess.file_exists(Inv_save_path):
 		var file = FileAccess.open(Inv_save_path, FileAccess.READ)
@@ -33,7 +43,13 @@ func load_inv_data():
 		print("Error loading Data")
 		
 func CallMainMenu(SaveData:bool = false, temp_inv:PlayerInventory = preload("res://Inventory/inventory.gd").new()):
+	get_tree().paused = false
 	if(SaveData):
 		mergeInventories(temp_inv)
 		save_inv_data()
 	get_tree().change_scene_to_packed(MainMenuScene)
+	state = PlayState.MAINMENU
+
+func RestartLevel():
+	get_tree().paused = false
+	get_tree().reload_current_scene()
