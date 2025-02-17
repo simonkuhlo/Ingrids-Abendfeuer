@@ -42,17 +42,17 @@ func mergeInventories(Inv: PlayerInventory):
 		fullInv.add_item(i.item, i.amount)
 
 #Loads the givenLevel and safes the Inventory globally
-func ProccedToNextLevel(nextLevel:PackedScene, InventoryData: PlayerInventory):
+func ProccedToNextLevel(nextLevel:LevelResource, InventoryData: PlayerInventory):
 	mergeInventories(InventoryData)
 	save_inv_data()
 	LoadLevel(nextLevel)
 
 #Loads a given Level without saving any data
-func LoadLevel(levelToLoad:PackedScene):
+func LoadLevel(levelToLoad:LevelResource):
 	get_tree().paused = false
 	state = PlayState.INLEVEL
-	get_tree().change_scene_to_packed(levelToLoad)
-	currentScenePacked = levelToLoad
+	get_tree().change_scene_to_packed(levelToLoad.scene)
+	currentScenePacked = levelToLoad.scene
 	await get_tree().process_frame #wait to frames to ensure the scene has actually been loaded
 	await get_tree().process_frame
 	var pm = PauseMenu.instantiate()
