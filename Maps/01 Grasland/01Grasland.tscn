@@ -6,11 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://bj22y86axlwou" path="res://Assets/1_Graswelt/button.fbx" id="4_y33ng"]
 [ext_resource type="PackedScene" uid="uid://cjvhlfo7r4o6o" path="res://MapObjects/jump_pad.tscn" id="5_dqymf"]
 [ext_resource type="Script" path="res://MapObjects/world_boundary_bottom.gd" id="8_1j36r"]
+[ext_resource type="Resource" uid="uid://wuoopnkw3tt7" path="res://Maps/02 Cave/02-Cave.tres" id="10_pt2bq"]
 [ext_resource type="PackedScene" uid="uid://c03bdbsvqgcko" path="res://MapObjects/collectable_item.tscn" id="11_xsvr6"]
 [ext_resource type="Resource" uid="uid://bfc6fjyf3bhjy" path="res://Inventory/Items/gold_coin.tres" id="12_ritw4"]
 [ext_resource type="PackedScene" uid="uid://fss54nmsn3ok" path="res://Entities/ingo.tscn" id="13_ard6n"]
 [ext_resource type="PackedScene" uid="uid://dgwoynnp7jayb" path="res://LevelTeleporter/LevelTransporter.tscn" id="13_c7m7o"]
-[ext_resource type="PackedScene" uid="uid://cm011l2ybtnrk" path="res://Maps/02Cave.tscn" id="14_wtte8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_auckf"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -222,7 +222,7 @@ item = ExtResource("12_ritw4")
 
 [node name="LevelTransporter" parent="World" instance=ExtResource("13_c7m7o")]
 transform = Transform3D(2.145, 0, 0, 0, 2.145, 0, 0, 0, 2.145, -0.625646, -2.89369, -7.15249)
-nextLevel = ExtResource("14_wtte8")
+nextLevel = ExtResource("10_pt2bq")
 
 [node name="IngoNew" parent="." instance=ExtResource("13_ard6n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.24633, 0)

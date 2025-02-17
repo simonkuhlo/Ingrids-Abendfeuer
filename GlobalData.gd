@@ -5,10 +5,10 @@ extends Node
 @onready var Settings_save_path = "user://settings.save"
 
 #Globally existent PlayerInventory
-@onready var fullInv:PlayerInventory = preload("res://Inventory/inventory.gd").new()
+@onready var fullInv:PlayerInventory = PlayerInventory.new()
 
 #MainMenu preload
-@onready var MainMenuScene:PackedScene = load("res://MainMenu/MainMenu.tscn")
+@onready var MainMenuScene:PackedScene = load("res://UI/MainMenu/MainMenu.tscn")
 
 #PauseMenu preload
 @onready var PauseMenu:PackedScene = load("res://UI/PauseMenu/PauseMenu.tscn")
