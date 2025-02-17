@@ -13,7 +13,7 @@ extends Node
 #PauseMenu preload
 @onready var PauseMenu:PackedScene = load("res://UI/PauseMenu/PauseMenu.tscn")
 
-#Current Playerstate
+#Current Playstate
 enum PlayState {MAINMENU, INLEVEL}
 @onready var state:PlayState = PlayState.MAINMENU
 @onready var currentScenePacked:PackedScene = MainMenuScene
@@ -21,7 +21,7 @@ enum PlayState {MAINMENU, INLEVEL}
 func _ready() -> void:
 	load_inv_data()
 
-#save the current Global PlayerInventory to the safefile
+#save current global PlayerInventory to the safefile
 func save_inv_data():
 	var file = FileAccess.open(Inv_save_path, FileAccess.WRITE)
 	file.store_var(fullInv)
@@ -36,31 +36,31 @@ func load_inv_data():
 	else:
 		print("Error loading Data")
 
-#Adds the Items fron the given Inventory to the Global Inventory
+#Adds all items from the given inventory to the global inventory
 func mergeInventories(Inv: PlayerInventory):
 	for i in Inv.inventory:
 		fullInv.add_item(i.item, i.amount)
 
-#Loads the givenLevel and safes the Inventory globally
-func ProccedToNextLevel(nextLevel:LevelResource, InventoryData: PlayerInventory):
+#Loads the given Level and safes the Inventory globally
+func change_level(nextLevel:LevelResource, InventoryData: PlayerInventory):
 	mergeInventories(InventoryData)
 	save_inv_data()
-	LoadLevel(nextLevel)
+	load_level(nextLevel)
 
 #Loads a given Level without saving any data
-func LoadLevel(levelToLoad:LevelResource):
+func load_level(levelToLoad:LevelResource):
 	get_tree().paused = false
 	state = PlayState.INLEVEL
 	get_tree().change_scene_to_packed(levelToLoad.scene)
 	currentScenePacked = levelToLoad.scene
-	await get_tree().process_frame #wait to frames to ensure the scene has actually been loaded
+	await get_tree().process_frame #wait two frames to ensure the scene has actually been loaded
 	await get_tree().process_frame
 	var pm = PauseMenu.instantiate()
 	pm.currentlevel = levelToLoad
 	get_tree().get_current_scene().add_child(pm)
 
-#Loads The MainMenu back Up (Optionaly saves an given Inventory to the global Inventory)
-func CallMainMenu(SaveData:bool = false, temp_inv:PlayerInventory = preload("res://Inventory/inventory.gd").new()):
+#Loads The MainMenu back Up (Optionally saves a given inventory to the global inventory)
+func call_main_menu(SaveData:bool = false, temp_inv:PlayerInventory = preload("res://Inventory/inventory.gd").new()):
 	get_tree().paused = false
 	if(SaveData):
 		mergeInventories(temp_inv)
@@ -68,8 +68,3 @@ func CallMainMenu(SaveData:bool = false, temp_inv:PlayerInventory = preload("res
 	get_tree().change_scene_to_packed(MainMenuScene)
 	currentScenePacked = MainMenuScene
 	state = PlayState.MAINMENU
-
-#Restarts current Level
-func RestartLevel():
-	get_tree().paused = false
-	get_tree().reload_current_scene()
