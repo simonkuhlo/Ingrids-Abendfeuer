@@ -27,7 +27,7 @@ func _input(event: InputEvent) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _on_restart_pressed() -> void:
-	GlobalData.LoadLevel(currentlevel)
+	GlobalData.load_level(currentlevel)
 
 func _on_main_menu_pressed() -> void:
-	GlobalData.CallMainMenu()
+	GlobalData.call_main_menu()
