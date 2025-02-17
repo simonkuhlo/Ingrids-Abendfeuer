@@ -55,7 +55,9 @@ func LoadLevel(levelToLoad:PackedScene):
 	currentScenePacked = levelToLoad
 	await get_tree().process_frame #wait to frames to ensure the scene has actually been loaded
 	await get_tree().process_frame
-	get_tree().get_current_scene().add_child(PauseMenu.instantiate())
+	var pm = PauseMenu.instantiate()
+	pm.currentlevel = levelToLoad
+	get_tree().get_current_scene().add_child(pm)
 
 #Loads The MainMenu back Up (Optionaly saves an given Inventory to the global Inventory)
 func CallMainMenu(SaveData:bool = false, temp_inv:PlayerInventory = preload("res://Inventory/inventory.gd").new()):

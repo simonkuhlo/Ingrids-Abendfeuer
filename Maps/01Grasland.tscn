@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://gbotbhct1jio"]
+[gd_scene load_steps=23 format=4 uid="uid://gbotbhct1jio"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_4f5k8"]
 [ext_resource type="PackedScene" uid="uid://6kuhaeceprnn" path="res://Assets/1_Graswelt/bridge_poles.fbx" id="2_ijh58"]
@@ -6,8 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bj22y86axlwou" path="res://Assets/1_Graswelt/button.fbx" id="4_y33ng"]
 [ext_resource type="PackedScene" uid="uid://cjvhlfo7r4o6o" path="res://MapObjects/jump_pad.tscn" id="5_dqymf"]
 [ext_resource type="Script" path="res://MapObjects/world_boundary_bottom.gd" id="8_1j36r"]
-[ext_resource type="Script" path="res://MapObjects/collectable_item.gd" id="9_m7264"]
-[ext_resource type="Resource" uid="uid://bnsl7tucqtovb" path="res://Inventory/Items/key_1.tres" id="10_76pnv"]
 [ext_resource type="PackedScene" uid="uid://c03bdbsvqgcko" path="res://MapObjects/collectable_item.tscn" id="11_xsvr6"]
 [ext_resource type="Resource" uid="uid://bfc6fjyf3bhjy" path="res://Inventory/Items/gold_coin.tres" id="12_ritw4"]
 [ext_resource type="PackedScene" uid="uid://fss54nmsn3ok" path="res://Entities/ingo.tscn" id="13_ard6n"]
@@ -218,12 +216,6 @@ shape = SubResource("WorldBoundaryShape3D_bmlxr")
 
 [node name="Items" type="Node3D" parent="World"]
 
-[node name="Key" type="Area3D" parent="World/Items"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 1, 0)
-script = ExtResource("9_m7264")
-item = ExtResource("10_76pnv")
-rotation_speed = 0.5
-
 [node name="Coin" parent="World/Items" instance=ExtResource("11_xsvr6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.80446, 2.92234, 0)
 item = ExtResource("12_ritw4")
@@ -233,11 +225,6 @@ transform = Transform3D(2.145, 0, 0, 0, 2.145, 0, 0, 0, 2.145, -0.625646, -2.893
 nextLevel = ExtResource("14_wtte8")
 
 [node name="IngoNew" parent="." instance=ExtResource("13_ard6n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.72752, 0)
-
-[node name="ExpressionManager" parent="IngoNew" index="5"]
-_Grounded = null
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.24633, 0)
 
 [connection signal="body_entered" from="World/Objects/WorldBoundary" to="World/Objects/WorldBoundary" method="_on_body_entered"]
-
-[editable path="IngoNew"]
