@@ -5,7 +5,7 @@ extends Node
 @onready var Settings_save_path = "user://settings.save"
 
 #Globally existent PlayerInventory
-@export var fullInv:PlayerInventory = PlayerInventory.new()
+@onready var fullInv:PlayerInventory = PlayerInventory.new()
 
 #MainMenu preload
 @export var MainMenuScene:PackedScene = load("res://UI/MainMenu/MainMenu.tscn")
