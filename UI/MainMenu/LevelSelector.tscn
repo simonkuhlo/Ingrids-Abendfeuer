@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bry7lrojdg0mp"]
+
+[ext_resource type="Script" path="res://UI/MainMenu/level_selector.gd" id="1_g08yb"]
+[ext_resource type="Script" path="res://Maps/level_resource.gd" id="2_yc0dt"]
+[ext_resource type="Resource" uid="uid://d1wgcyti2ntdc" path="res://Maps/01 Grasland/01-Grasland.tres" id="3_ehdlr"]
+[ext_resource type="Resource" uid="uid://wuoopnkw3tt7" path="res://Maps/02 Cave/02-Cave.tres" id="4_eq8fr"]
+
+[node name="LevelSelector" type="Control" node_paths=PackedStringArray("level_list")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g08yb")
+listed_levels = Array[ExtResource("2_yc0dt")]([ExtResource("3_ehdlr"), ExtResource("4_eq8fr")])
+level_list = NodePath("MarginContainer/LevelList")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="LevelList" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 5

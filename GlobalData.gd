@@ -1,11 +1,11 @@
 extends Node
 
 #Save Paths for Inventory and Settings
-@onready var Inv_save_path = "user://inv_save.save"
-@onready var Settings_save_path = "user://settings.save"
+var Inv_save_path = "user://inv_save.save"
+var Settings_save_path = "user://settings.save"
 
 #Globally existent PlayerInventory
-@onready var fullInv:PlayerInventory = PlayerInventory.new()
+var fullInv:PlayerInventory = PlayerInventory.new()
 
 
 @export_group("Ui Elements")
@@ -16,8 +16,8 @@ extends Node
 
 #Current Playstate
 enum PlayState {MAINMENU, INLEVEL}
-@onready var state:PlayState = PlayState.MAINMENU
-@onready var currentScenePacked:PackedScene = MainMenuScene
+var state:PlayState = PlayState.MAINMENU
+var currentScenePacked:PackedScene = MainMenuScene
 
 func _ready() -> void:
 	load_inv_data()

@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://b35rshsempyck"]
 
 [ext_resource type="Script" path="res://GlobalData.gd" id="1_fwt8d"]
-[ext_resource type="PackedScene" uid="uid://bry7lrojdg0mp" path="res://UI/MainMenu/MainMenu.tscn" id="2_3magi"]
+[ext_resource type="PackedScene" uid="uid://bg0iba53ubwr0" path="res://main_menu.tscn" id="2_kgfgu"]
 [ext_resource type="PackedScene" uid="uid://cyee0rxwacafl" path="res://UI/PauseMenu/PauseMenu.tscn" id="3_minvf"]
 
 [node name="GlobalData" type="Node"]
 script = ExtResource("1_fwt8d")
-MainMenuScene = ExtResource("2_3magi")
+MainMenuScene = ExtResource("2_kgfgu")
 PauseMenu = ExtResource("3_minvf")

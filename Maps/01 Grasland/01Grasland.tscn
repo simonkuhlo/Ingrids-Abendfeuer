@@ -199,8 +199,6 @@ transform = Transform3D(1, 0, 0, 0, 0.0104718, -0.999945, 0, 0.999945, 0.0104718
 [node name="button" parent="World/Objects/Brücke" instance=ExtResource("4_y33ng")]
 transform = Transform3D(0.894154, 0, 0.447759, 0, 1, 0, -0.447759, 0, 0.894154, -15.4877, 5.64393, -18.1258)
 
-[node name="JumpPad" parent="World/Objects/Brücke" instance=ExtResource("5_dqymf")]
-
 [node name="JumpPads" type="Node3D" parent="World/Objects"]
 
 [node name="JumpPad7" parent="World/Objects/JumpPads" instance=ExtResource("5_dqymf")]
