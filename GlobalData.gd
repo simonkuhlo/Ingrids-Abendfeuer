@@ -7,11 +7,12 @@ extends Node
 #Globally existent PlayerInventory
 @onready var fullInv:PlayerInventory = PlayerInventory.new()
 
-#MainMenu preload
-@export var MainMenuScene:PackedScene = load("res://UI/MainMenu/MainMenu.tscn")
 
+@export_group("Ui Elements")
+#MainMenu preload
+@export var MainMenuScene:PackedScene
 #PauseMenu preload
-@export var PauseMenu:PackedScene = load("res://UI/PauseMenu/PauseMenu.tscn")
+@export var PauseMenu:PackedScene
 
 #Current Playstate
 enum PlayState {MAINMENU, INLEVEL}
