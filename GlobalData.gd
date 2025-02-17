@@ -5,13 +5,13 @@ extends Node
 @onready var Settings_save_path = "user://settings.save"
 
 #Globally existent PlayerInventory
-@onready var fullInv:PlayerInventory = PlayerInventory.new()
+@export var fullInv:PlayerInventory = PlayerInventory.new()
 
 #MainMenu preload
-@onready var MainMenuScene:PackedScene = load("res://UI/MainMenu/MainMenu.tscn")
+@export var MainMenuScene:PackedScene = load("res://UI/MainMenu/MainMenu.tscn")
 
 #PauseMenu preload
-@onready var PauseMenu:PackedScene = load("res://UI/PauseMenu/PauseMenu.tscn")
+@export var PauseMenu:PackedScene = load("res://UI/PauseMenu/PauseMenu.tscn")
 
 #Current Playstate
 enum PlayState {MAINMENU, INLEVEL}
