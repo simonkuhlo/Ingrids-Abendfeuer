@@ -7,11 +7,12 @@ extends Node
 #Globally existent PlayerInventory
 @onready var fullInv:PlayerInventory = PlayerInventory.new()
 
-#MainMenu preload
-@onready var MainMenuScene:PackedScene = load("res://UI/MainMenu/MainMenu.tscn")
 
+@export_group("Ui Elements")
+#MainMenu preload
+@export var MainMenuScene:PackedScene
 #PauseMenu preload
-@onready var PauseMenu:PackedScene = load("res://UI/PauseMenu/PauseMenu.tscn")
+@export var PauseMenu:PackedScene
 
 #Current Playstate
 enum PlayState {MAINMENU, INLEVEL}
@@ -37,13 +38,13 @@ func load_inv_data():
 		print("Error loading Data")
 
 #Adds all items from the given inventory to the global inventory
-func mergeInventories(Inv: PlayerInventory):
+func merge_inventories(Inv: PlayerInventory):
 	for i in Inv.inventory:
 		fullInv.add_item(i.item, i.amount)
 
 #Loads the given Level and safes the Inventory globally
 func change_level(nextLevel:LevelResource, InventoryData: PlayerInventory):
-	mergeInventories(InventoryData)
+	merge_inventories(InventoryData)
 	save_inv_data()
 	load_level(nextLevel)
 
@@ -63,7 +64,7 @@ func load_level(levelToLoad:LevelResource):
 func call_main_menu(SaveData:bool = false, temp_inv:PlayerInventory = preload("res://Inventory/inventory.gd").new()):
 	get_tree().paused = false
 	if(SaveData):
-		mergeInventories(temp_inv)
+		merge_inventories(temp_inv)
 		save_inv_data()
 	get_tree().change_scene_to_packed(MainMenuScene)
 	currentScenePacked = MainMenuScene
