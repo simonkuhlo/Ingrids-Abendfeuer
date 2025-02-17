@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LevelResource" load_steps=3 format=3 uid="uid://wuoopnkw3tt7"]
+
+[ext_resource type="Script" path="res://Maps/level_resource.gd" id="1_i2sv0"]
+[ext_resource type="PackedScene" uid="uid://cm011l2ybtnrk" path="res://Maps/02 Cave/02Cave.tscn" id="1_kdhvh"]
+
+[resource]
+script = ExtResource("1_i2sv0")
+name = &"Cave"
+scene = ExtResource("1_kdhvh")

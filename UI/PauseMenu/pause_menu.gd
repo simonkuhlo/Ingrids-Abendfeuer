@@ -1,7 +1,7 @@
 extends Control
 
 var menuopen = false
-@onready var currentlevel:PackedScene
+@onready var currentlevel:LevelResource
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

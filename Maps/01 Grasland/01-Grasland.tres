@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="LevelResource" load_steps=3 format=3 uid="uid://d1wgcyti2ntdc"]
+
+[ext_resource type="Script" path="res://Maps/level_resource.gd" id="1_o4x7u"]
+[ext_resource type="PackedScene" uid="uid://gbotbhct1jio" path="res://Maps/01 Grasland/01Grasland.tscn" id="1_rsx24"]
+
+[resource]
+script = ExtResource("1_o4x7u")
+name = &"Grasland"
+scene = ExtResource("1_rsx24")
