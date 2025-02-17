@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddxgtfyhx5cjh"]
+
+[ext_resource type="Script" path="res://UI/LevelSelector/LevelButton/level_button.gd" id="1_pagf5"]
+
+[node name="LevelButton" type="Button" node_paths=PackedStringArray("name_label", "texture_rect")]
+custom_minimum_size = Vector2(200, 300)
+offset_right = 200.0
+offset_bottom = 300.0
+script = ExtResource("1_pagf5")
+name_label = NodePath("VBoxContainer/NameLabel")
+texture_rect = NodePath("VBoxContainer/PreviewImage")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 227.0
+
+[node name="PreviewImage" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+expand_mode = 2
+
+[node name="NameLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Error"
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
