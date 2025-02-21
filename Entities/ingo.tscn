@@ -1,14 +1,13 @@
 [gd_scene load_steps=29 format=4 uid="uid://fss54nmsn3ok"]
 
 [ext_resource type="Script" path="res://addons/SimonsStateChart/state_chart.gd" id="1_1alts"]
-[ext_resource type="Script" path="res://Entities/player_controlled_entity.gd" id="1_2xmhn"]
+[ext_resource type="Script" path="res://Entities/player.gd" id="1_2xmhn"]
 [ext_resource type="Script" path="res://Entities/motion_machine.gd" id="1_dyrr6"]
 [ext_resource type="Script" path="res://addons/SimonsStateChart/StateChartState/parallel_state.gd" id="2_bqtug"]
 [ext_resource type="Script" path="res://Inventory/inventory.gd" id="2_k1rd1"]
 [ext_resource type="Script" path="res://addons/SimonsStateChart/StateChartState/compound_state.gd" id="3_g36ug"]
+[ext_resource type="Script" path="res://Skills/Actions/action_jump.gd" id="4_7dlil"]
 [ext_resource type="Script" path="res://addons/SimonsStateChart/StateChartState/atomic_state.gd" id="4_31jh3"]
-[ext_resource type="Script" path="res://Skills/skill_slot.gd" id="4_56nk8"]
-[ext_resource type="Resource" uid="uid://ds8rpicpwolih" path="res://Skills/Skills/Jump/JumpSkill.tres" id="5_ho06a"]
 [ext_resource type="Script" path="res://addons/SimonsStateChart/Expressions/expression_manager.gd" id="6_4h3qa"]
 [ext_resource type="Script" path="res://addons/SimonsStateChart/Expressions/bool_expression_node.gd" id="7_j7p42"]
 [ext_resource type="Script" path="res://addons/SimonsStateChart/StateTransition/Guards/ExpressionGuards/boolean_expression_guard.gd" id="7_rb0nu"]
@@ -18,6 +17,7 @@
 [ext_resource type="Script" path="res://addons/SimonsStateChart/StateTransition/Guards/delay_guard.gd" id="11_20e7i"]
 [ext_resource type="Script" path="res://Entities/skin.gd" id="12_ikcvd"]
 [ext_resource type="Script" path="res://Entities/collection_range.gd" id="13_b47up"]
+[ext_resource type="Script" path="res://addons/SimonsActions/Tools/state_display.gd" id="18_22u7f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ujwo"]
 resource_name = "teeth"
@@ -376,11 +376,11 @@ visualizer3 = NodePath("../[Debug] Direction")
 
 [node name="SkillSlots" type="Node" parent="."]
 
-[node name="SkillSlot1" type="Node" parent="SkillSlots" node_paths=PackedStringArray("player")]
-script = ExtResource("4_56nk8")
+[node name="JumpAction" type="Node" parent="SkillSlots" node_paths=PackedStringArray("entity")]
+script = ExtResource("4_7dlil")
 trigger = &"skill_1"
-resource = ExtResource("5_ho06a")
-player = NodePath("../..")
+entity = NodePath("../..")
+prepare_time = 1.0
 
 [node name="SkillInstances" type="Node" parent="."]
 
@@ -780,6 +780,14 @@ debug_shape_custom_color = Color(0, 0.72549, 0.815686, 1)
 hit_back_faces = false
 debug_shape_custom_color = Color(0, 0, 1, 1)
 debug_shape_thickness = 5
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer" node_paths=PackedStringArray("action_to_watch")]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("18_22u7f")
+action_to_watch = NodePath("../../SkillSlots/JumpAction")
 
 [connection signal="activated" from="StateChart/Root/MovementMode/Grounded" to="MotionMachine" method="_on_grounded_activated"]
 [connection signal="physics_processing" from="StateChart/Root/MovementMode/Grounded" to="MotionMachine" method="_on_normal_physics_processing"]

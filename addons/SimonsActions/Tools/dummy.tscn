@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://ydojkue5cfqc"]
+
+[ext_resource type="Script" path="res://addons/SimonsActions/Tools/dummy.gd" id="1_fw8b1"]
+[ext_resource type="Script" path="res://addons/SimonsActions/ObtainableResources/obtainable_resource_manager.gd" id="1_qahs0"]
+[ext_resource type="Script" path="res://addons/SimonsActions/ObtainableResources/obtainable_resource.gd" id="2_txge1"]
+[ext_resource type="Resource" uid="uid://bdxocijmk626n" path="res://addons/SimonsActions/ObtainableResources/HP_Resource.tres" id="3_6cif6"]
+[ext_resource type="Resource" uid="uid://bc7nnpl84kpnm" path="res://addons/SimonsActions/ObtainableResources/AP_Resource.tres" id="5_e8vp4"]
+[ext_resource type="Script" path="res://addons/SimonsActions/ObtainableResources/obtainable_resource_cost.gd" id="7_8cn14"]
+[ext_resource type="Script" path="res://addons/SimonsActions/Tools/resource_label.gd" id="7_i5n1e"]
+[ext_resource type="Script" path="res://addons/SimonsActions/Actions/action_continuous.gd" id="8_h0xb2"]
+[ext_resource type="Script" path="res://addons/SimonsActions/Actions/action_oneshot.gd" id="8_m6vd1"]
+[ext_resource type="Script" path="res://addons/SimonsActions/Tools/state_display.gd" id="10_7momb"]
+
+[sub_resource type="Resource" id="Resource_6ahow"]
+script = ExtResource("7_8cn14")
+type = ExtResource("5_e8vp4")
+amount = 1.0
+
+[node name="Dummy" type="Node" node_paths=PackedStringArray("resources")]
+script = ExtResource("1_fw8b1")
+resources = NodePath("ObtainableResourceManager")
+hp_type = ExtResource("3_6cif6")
+
+[node name="ObtainableResourceManager" type="Node" parent="."]
+script = ExtResource("1_qahs0")
+
+[node name="HP" type="Node" parent="ObtainableResourceManager"]
+script = ExtResource("2_txge1")
+type = ExtResource("3_6cif6")
+max_value = 100.0
+default_value = 100.0
+regen_per_second = 0.1
+
+[node name="AP" type="Node" parent="ObtainableResourceManager"]
+script = ExtResource("2_txge1")
+type = ExtResource("5_e8vp4")
+default_value = 10.0
+regen_per_second = 1.0
+
+[node name="Actions" type="Node" parent="."]
+
+[node name="ActionOneshot" type="Node" parent="Actions" node_paths=PackedStringArray("entity")]
+script = ExtResource("8_m6vd1")
+trigger = &"skill_1"
+entity = NodePath("../..")
+cooldown = 1.0
+costs = Array[ExtResource("7_8cn14")]([SubResource("Resource_6ahow")])
+
+[node name="ActionContinuous" type="Node" parent="Actions" node_paths=PackedStringArray("entity")]
+script = ExtResource("8_h0xb2")
+trigger = &"skill_2"
+entity = NodePath("../..")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer" node_paths=PackedStringArray("resource_to_watch")]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "HP Label"
+script = ExtResource("7_i5n1e")
+resource_to_watch = NodePath("../../ObtainableResourceManager/HP")
+
+[node name="Label2" type="Label" parent="CanvasLayer" node_paths=PackedStringArray("resource_to_watch")]
+offset_top = 23.0
+offset_right = 40.0
+offset_bottom = 46.0
+text = "AP Label"
+script = ExtResource("7_i5n1e")
+resource_to_watch = NodePath("../../ObtainableResourceManager/AP")
+
+[node name="StateDisplay" type="Label" parent="CanvasLayer" node_paths=PackedStringArray("action_to_watch")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+script = ExtResource("10_7momb")
+action_to_watch = NodePath("../../Actions/ActionOneshot")

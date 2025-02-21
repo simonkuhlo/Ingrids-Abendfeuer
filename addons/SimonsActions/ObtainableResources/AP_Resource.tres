@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="ObtainableResourceType" load_steps=2 format=3 uid="uid://bc7nnpl84kpnm"]
+
+[ext_resource type="Script" path="res://addons/SimonsActions/ObtainableResources/obtainable_resource_type.gd" id="1_ohfrx"]
+
+[resource]
+script = ExtResource("1_ohfrx")
+name = &"AP"
