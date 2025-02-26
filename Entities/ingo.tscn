@@ -17,7 +17,7 @@
 [ext_resource type="Script" path="res://addons/SimonsStateChart/StateTransition/Guards/delay_guard.gd" id="11_20e7i"]
 [ext_resource type="Script" path="res://Entities/skin.gd" id="12_ikcvd"]
 [ext_resource type="Script" path="res://Entities/collection_range.gd" id="13_b47up"]
-[ext_resource type="Script" path="res://addons/SimonsActions/Tools/state_display.gd" id="18_22u7f"]
+[ext_resource type="Script" path="res://addons/SimonsPlayerActions/Tools/state_display.gd" id="18_22u7f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ujwo"]
 resource_name = "teeth"
