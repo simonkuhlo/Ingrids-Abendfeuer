@@ -9,16 +9,16 @@ var registered_resources:Array[ObtainableResource]:
 			_register_all_resources()
 		return _registered_resources
 
+func _remove_resource(resource:ObtainableResource) -> void:
+	_registered_resources.erase(resource)
+	resource.queue_free()
+
 func _register_resource(resource:ObtainableResource) -> void:
 	if _registered_resources:
 		if get_resource_by_type(resource.type):
 			push_error("Resource type already exists!")
 			_remove_resource(resource)
 	_registered_resources.append(resource)
-
-func _remove_resource(resource:ObtainableResource) -> void:
-	_registered_resources.erase(resource)
-	resource.queue_free()
 
 func _register_all_resources() -> void:
 	for child in get_children():

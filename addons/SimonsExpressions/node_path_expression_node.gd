@@ -1,4 +1,4 @@
-@icon("res://addons/SimonsStateChart/Icons/NodePathExpression.svg")
+@icon("res://addons/SimonsExpressions/Icons/NodePathExpression.svg")
 extends ExpressionNode
 class_name NodePathExpressionNode
 

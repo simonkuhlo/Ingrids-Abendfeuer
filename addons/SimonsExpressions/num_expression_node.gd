@@ -1,4 +1,4 @@
-@icon("res://addons/SimonsStateChart/Icons/NumericExpression.svg")
+@icon("res://addons/SimonsExpressions/Icons/NumericExpression.svg")
 extends ExpressionNode
 class_name NumericalExpressionNode
 

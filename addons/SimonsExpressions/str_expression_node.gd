@@ -1,13 +1,11 @@
-@icon("res://addons/SimonsStateChart/Icons/BoolExpression.svg")
+@icon("res://addons/SimonsExpressions/Icons/StrExpression.svg")
 extends ExpressionNode
-class_name BoolExpressionNode
+class_name StringExpressionNode
 
-@export var value:bool:
+@export var value:StringName = "":
 	set(new_value):
 		set_value(new_value)
 	get():
-		if !get_value():
-			return false
 		return get_value()
 
 func set_value(new_value):

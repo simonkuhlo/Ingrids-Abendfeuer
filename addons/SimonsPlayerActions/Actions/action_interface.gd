@@ -1,7 +1,7 @@
 extends Node
 class_name ActionInterface
 
-@export var entity:Player
+@export var entity:Node
 
 @export var prepare_time:float = 0
 @export var cooldown:float = 0
