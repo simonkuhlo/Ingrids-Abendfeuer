@@ -8,8 +8,8 @@
 [ext_resource type="Script" path="res://addons/SimonsStateChart/StateChartState/compound_state.gd" id="3_g36ug"]
 [ext_resource type="Script" path="res://Skills/Actions/action_jump.gd" id="4_7dlil"]
 [ext_resource type="Script" path="res://addons/SimonsStateChart/StateChartState/atomic_state.gd" id="4_31jh3"]
-[ext_resource type="Script" path="res://addons/SimonsStateChart/Expressions/expression_manager.gd" id="6_4h3qa"]
-[ext_resource type="Script" path="res://addons/SimonsStateChart/Expressions/bool_expression_node.gd" id="7_j7p42"]
+[ext_resource type="Script" path="res://addons/SimonsExpressions/expression_manager.gd" id="6_4h3qa"]
+[ext_resource type="Script" path="res://addons/SimonsExpressions/bool_expression_node.gd" id="7_j7p42"]
 [ext_resource type="Script" path="res://addons/SimonsStateChart/StateTransition/Guards/ExpressionGuards/boolean_expression_guard.gd" id="7_rb0nu"]
 [ext_resource type="Script" path="res://addons/SimonsStateChart/StateTransition/state_transition.gd" id="8_bqvqd"]
 [ext_resource type="Script" path="res://addons/SimonsStateChart/StateTransition/Guards/cooldown_guard.gd" id="10_tewfq"]
@@ -360,8 +360,8 @@ script = ExtResource("2_k1rd1")
 
 [node name="MotionMachine" type="Node" parent="." node_paths=PackedStringArray("_camera", "camera_pivot", "controlled_entity", "grounded_expression", "state_chart", "body", "compass", "visualizer1", "visualizer2", "visualizer3")]
 script = ExtResource("1_dyrr6")
-max_move_speed = 7.0
-acceleration = 40.0
+max_move_speed = 8.0
+acceleration = 70.0
 mouse_sensitivity = 0.4
 _camera = NodePath("../IndependendCamreaPivot/SpringArm3D/Camera3D")
 camera_pivot = NodePath("../IndependendCamreaPivot")
@@ -488,7 +488,6 @@ cooldown_seconds = 5.0
 
 [node name="ExpressionManager" type="Node" parent="."]
 script = ExtResource("6_4h3qa")
-_Grounded = false
 
 [node name="Grounded" type="Node" parent="ExpressionManager"]
 script = ExtResource("7_j7p42")
